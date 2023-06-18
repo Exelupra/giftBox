@@ -1,0 +1,11 @@
+{% extends "header.twig" %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block content %}
+<h1><a href="{{ url_for('catcreate') }}">Créer une categorie</a></h1>
+{% for it in categories %}
+    <h3>{{ it.id }} - <a href="{{ url_for('categid', {'id': it.id}) }}">{{ it.libelle }}</a></h3>
+{% endfor %}
+    <h3><a href="{{ url_for('home') }}">Retour à l'acceuil</a></h3>
+{% endblock %}

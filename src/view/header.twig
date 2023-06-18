@@ -1,0 +1,19 @@
+<html>
+<body>
+    <header>
+        <h1>Mon site</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Acceuil</a></li>
+                <li><a href="{{ url_for('categ') }}">Categories</a></li>
+                <li><a href="{{ url_for('prest') }}">Prestations</a></li>
+                <li><a href="{{ url_for('box') }}">Box</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="content">
+        {% block content %}{% endblock %}
+    </section>
+</body>
+</html>

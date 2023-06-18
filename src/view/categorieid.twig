@@ -1,0 +1,11 @@
+{% extends 'header.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block content %}
+<h1>la Categorie {{ id }}</h1>
+<h2>{{ libelle }}</h2>
+<h2>{{ description }}</h2>
+<h3><a href="{{ url_for('prestcateg', {'id': id}) }}">Prestations</a></h3>
+<h3><a href="{{ url_for('categ') }}">Retour à la liste des catégories</a></h3>
+{% endblock %}

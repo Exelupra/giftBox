@@ -1,0 +1,23 @@
+{% extends 'header.twig' %}
+
+{% block title %}Prestations de la categorie {{ idcat }}{% endblock %}
+
+{% block content %}
+{% if from == 'box' %}
+    <h1>Prestations du coffret {{ oldid }} </h1>
+{% elif from == 'categ' %}
+    <h1>Prestations de la categorie {{ idcat }} </h1>
+{% endif %}
+{% for it in prestations %}
+    <h2><a href="{{ url_for('prestid', {'id': it.id }) }}">{{ it.libelle }}</a></h2>
+    <h4>{{ it.id }}</h4>
+    <h4>{{ it.description }}</h4>
+    <h4>{{ it.unite }}</h4>
+    <h4>{{ it.tarif }}</h4>
+{% endfor %
+{% if from == 'box' %}
+    <h2><a href="{{ url_for('boxid', {'id':oldid}) }}">Retour au coffret {{ oldid }}</a></h2>
+{% elif from == 'categ' %}
+    <h2><a href="{{ url_for('categid', {'id':oldid}) }}">Retour à la catégorie {{ oldid }}</a></h2>
+{% endif %}
+{% endblock %}

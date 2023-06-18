@@ -1,0 +1,22 @@
+{% extends 'header.twig' %}
+
+{% block title %}Prestation{% endblock %}
+
+{% block content %}
+<h1>La prestation n° {{ p.id }}</h1>
+<h2>{{ p.libelle }}</h2>
+<h2>{{ p.description }}</h2>
+<h2>{{ p.unite }}</h2>
+<h2>{{ p.tarif }}</h2>
+<form method="post" action="{{ url_for('add2box') }}">
+    <input type="hidden" name="prestid" value="{{ p.id }}">
+    <select name="boxid">
+        {% for b in boxs %}
+        <option value="{{ b.id }}">{{ b.libelle }}</option>
+        {% endfor %}
+        <input type="number" name="qte" value="1" min="1">
+    </select>
+    <input type="submit" value="Ajouter à la box">
+</form>
+<h3><a href="{{ url_for('prestcateg', {'id': idcat})}}">Retour à la liste des prestations</a></h3>
+{% endblock %}

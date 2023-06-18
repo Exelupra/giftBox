@@ -1,0 +1,24 @@
+{% extends 'header.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block content %}
+{% if success == false %}
+    <form method="post" action="{{ url_for('boxcreated') }}">
+        <label for="libelle">Libelle</label>
+        <input type="text" name="libelle" id="libelle" required/>
+        <label for="description">Description</label>
+        <input type="description" name="description" id="description" required/>
+        <input type="hidden" name="csrf" value="{{ csrf }}">
+        <label for="kdo">Kdo</label>
+        <input type="checkbox" name="kdo" id="kdo"/>
+        <label for="kdomsg">Kdo message</label>
+        <input type="text" name="kdomsg" id="kdomsg"/>
+
+
+        <input type="submit" value="Ajouter">
+    </form>
+{% else %}
+    <p>Box {{ box.libelle }} ajoutée</p>
+{% endif %}
+{% endblock %}

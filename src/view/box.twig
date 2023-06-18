@@ -1,0 +1,11 @@
+{% extends "header.twig" %}
+
+{% block title %}Liste des coffrets{% endblock %}
+
+{% block content %}
+    <h1><a href="{{ url_for('boxform') }}">Créer un coffret</a></h1>
+{% for it in box %}
+    <h3><a href="{{ url_for('boxid', {'id': it.id}) }}">{{ it.libelle }}</a> : {{ it.montant }}</h3>
+{% endfor %}
+    <h3><a href="{{ url_for('home') }}">Retour à l'acceuil</a></h3>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'header.twig' %}
+
+{% block title %}Prestations du coffret {% endblock %}
+
+{% block content %}
+<h2>{{ box.libelle }} : {{ box.montant }}</h2>
+{% if prestations|length > 0 %}
+{% for prestation in prestations %}
+<div class="prestation">
+    <h3><a href="{{ url_for('prestid',{id:prestation.id}) }}">{{ prestation.libelle }}</a> x {{ prestation.contenu.quantite }}</h3>
+    <p>{{ prestation.tarif * prestation.contenu.quantite }} €</p>
+    <form action="{{ url_for('updatebox') }}" method="post">
+        <input type="hidden" name="idprest" value="{{ prestation.id }}">
+        <input type="hidden" name="idbox" value="{{ box.id }}">
+        <input type="number" name="qte" min=1 max={{ prestation.contenu.quantite }} value=1>
+        <input type="submit" value="Retirer">
+    </form>
+    <form action="{{ url_for('del2box') }}" method="post">
+        <input type="hidden" name="idprest" value="{{ prestation.id }}">
+        <input type="hidden" name="idbox" value="{{ box.id }}">
+        <input type="submit" value="Supprimer">
+    </form>
+</div>
+{% endfor %}
+{% else %}
+<h1>Aucune prestation pour ce coffret</h1>
+{% endif %}
+<h3><a href="{{ url_for('boxid', {'id': box.id})}}">Retour au coffret {{ box.libelle }}</a></h3>
+{% endblock %}

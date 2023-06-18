@@ -1,0 +1,40 @@
+version: "3"
+
+networks:
+  giftbox:
+    driver: bridge
+
+services:
+  sql:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mysql
+      - MYSQL_USER=root
+    ports:
+      - "28000:3306"
+    networks:
+      giftbox:
+        aliases:
+          - sql.db
+          - sql326.net
+
+  adminer:
+    image: adminer
+    ports:
+      - "28001:8080"
+    networks:
+      - giftbox
+
+  php:
+    image: canals/php:8.1
+    ports:
+      - "28002:80"
+    volumes:
+      - ./api/public:/var/www/html
+      - ./api/src:/var/www/src
+    working_dir: /var/www/src
+    networks:
+      - giftbox
+    depends_on:
+      - sql

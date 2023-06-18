@@ -1,0 +1,12 @@
+{% extends 'header.twig' %}
+
+{% block title %}Box{% endblock %}
+
+{% block content %}
+<h1>la Coffret {{ id }}</h1>
+<h2>{{ libelle }}</h2>
+<h2>{{ description }}</h2>
+<h2>{{ montant }}</h2>
+<h3><a href="{{ url_for('prestabox', {'id': id}) }}">Prestations</a></h3>
+<h3><a href="{{ url_for('box') }}">Retour à la liste des coffrets</a></h3>
+{% endblock %}
